@@ -1,0 +1,34 @@
+-- INICIAR UN PROYECTO CON PLAYWRIGHT --
+1. npm init playwright@latest
+2. y
+3. TypeScript o JavaScript
+4. tests // es la carpeta donde alojaremos los tests
+5. true // es para poder trabajar con GitHub actions
+6. true // binarios de los browsers para las pruebas
+
+-- MOSTRAR TODOS LOS TEST --
+npx playwright show-report
+
+-- INICIAR TODOS LOS TEST --
+npx playwright test
+
+-- INICIAR EL MODO UI INTERACTIVO --
+npx playwright test --ui
+
+-- INICIAR EL MODO ESCRITORIO SOLO CHROME --
+npx playwright test --project-chromium
+
+-- INICIAR EL MODO ESCRITORIO SOLO PROYECTO PERSONALIZADO --
+npx playwright test --project=iPad
+
+-- INICIAR UN TEST EN ESPECIFICO --
+npx playwright test "example"
+
+-- INICIAR UN TEST EN MODO DEBUG --
+npx playwright test --debug
+
+-- INICIAR TEST QUE TE GENERE CODIGO --
+npx playwright codegen www.paginaparaprobar.com
+
+-- INICIAR TEST SOLO POR TAGS --
+npx playwright test --grep @TAG

@@ -1,0 +1,41 @@
+package com.account;
+
+public class Account {
+	private double balance;
+	private String accountNumber;
+
+	public Account(double balance, String accountNumber) {
+		super(); // Todos los objetos heredan de Object
+		this.balance = balance; // referencia al balance de la clase cuenta sera igual al balance del parametro
+		this.accountNumber = accountNumber; // lo mismo que balance pero con accountNumber
+	}
+
+	// Obtener el numero de la cuenta
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	// Recibe el numero de cuenta y lo asigna
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	// Obtener el balance
+	public double getBalance() {
+		return balance;
+	}
+
+	// Depositar un monto a la cuenta
+	public void deposit(double depositAmount) {
+		if (depositAmount > 0)
+			balance = balance + depositAmount;
+	}
+
+	public void withdrawal(double withdrawAmount) {
+		if (balance > 0 && balance >= withdrawAmount)
+			balance = balance - withdrawAmount;
+		else
+			System.out.println("Sorry, there is not enough money in your account");
+	}
+
+}

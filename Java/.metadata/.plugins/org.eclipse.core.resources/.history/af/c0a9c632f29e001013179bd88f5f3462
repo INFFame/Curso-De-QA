@@ -1,0 +1,51 @@
+package com.account.test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import com.account.Account;
+
+class Account_Test {
+	
+	static Account account1;
+
+	@BeforeAll
+	static void setUpBeforeClass() throws Exception {
+		account1 = new Account(100, "abc123");
+	}
+
+	@Test
+	void verifyCorrectAccountNumber_Test() {
+		System.out.println("Account number is: " + account1.getAccountNumber());
+		assertEquals("abc123", account1.getAccountNumber(), "Failed: The account number is not correct.");
+	}
+	
+	@Test
+	void deposit_Test() {
+		double currentBalance = account1.getBalance();
+		System.out.println("Initial Balance is: " + currentBalance);
+		account1.deposit(100.00);
+		
+		double balanceAfterDeposit = account1.getBalance();
+		System.out.println("Balance after deposit is: " + balanceAfterDeposit);
+		
+		assertEquals((currentBalance + 100), balanceAfterDeposit, "Failed: Balance after deposit is incorrect.");
+		
+	}
+	
+	@Test
+	void withdrawal_Test() {
+		double currentBalance = account1.getBalance();
+		System.out.println("Initial Balance is: " + currentBalance);
+		
+		account1.withdrawal(25.00);
+		
+		double balanceAfterWithdrawal = account1.getBalance();
+		System.out.println("Balance after whitdraw is: " + balanceAfterWithdrawal);
+		assertEquals((currentBalance-25.00), balanceAfterWithdrawal, "Failed: Balance after withdrawal is incorrect.");
+		
+	}
+
+}
