@@ -32,3 +32,8 @@ npx playwright codegen www.paginaparaprobar.com
 
 -- INICIAR TEST SOLO POR TAGS --
 npx playwright test --grep @TAG
+
+-- DEFINIR UNA VARIABLE DE ENTORNO TEMPORALMENTE EN TU CONSOLA --
+set API_TOKEN=123456abcdef
+
+

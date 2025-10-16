@@ -38,8 +38,9 @@ export default defineConfig({
   },
 
   /* Configure projects for major browsers */
-  /*
+
   projects: [
+    /*
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
@@ -54,48 +55,66 @@ export default defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
-*/
 
-  projects: [
-      {
-        name: 'Computadora',
-        testMatch: "/sandbox.spec.ts",
-        retries: 1,
-        use: { ...devices['Desktop Chrome'] },
+
+    {
+      name: 'Computadora',
+      testMatch: 'AutomationSandbox.spec.ts',
+      retries: 1,
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'Iphone',
+      testMatch: 'AutomationSandbox.spec.ts',
+      retries: 1,
+      use: { ...devices['iPhone 12'] },
+    },
+    {
+      name: 'Ipad',
+      testMatch: 'AutomationSandbox.spec.ts',
+      retries: 1,
+      use: { ...devices['iPad (gen 7)'] },
+    },
+  */
+    // Proyecto de APIs
+    {
+      name: 'Computadora',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'Iphone',
+      use: { ...devices['iPhone 12'] },
+    },
+    {
+      name: 'Ipad',
+      use: { ...devices['iPad (gen 7)'] },
+    },
+
+    // Proyecto de APIs: detecta todos los specs dentro de tests/APITests
+    {
+      name: 'APITests',
+      testMatch: 'APITests/**/APITests.spec.ts',
+      use: {
+        baseURL: 'https://api.github.com',
+        extraHTTPHeaders: {
+          Accept: 'application/vnd.github.v3+json',
+          Authorization: `token ${process.env.API_TOKEN}`,
+        },
       },
+    },
 
-      {
-        name: 'Iphone',
-        testMatch: "/sandbox.spec.ts",
-        retries: 1,
-        use: { ...devices['iPhone 12'] },
+    {
+      name: 'E2EAPI',
+      testMatch: 'APITests/**/E2EAPI.spec.ts',
+
+      use: {
+        baseURL: 'https://api.github.com',
+        extraHTTPHeaders: {
+          Accept: 'application/vnd.github.v3+json',
+          Authorization: `token ${process.env.API_TOKEN}`,
+        },
       },
-
-      {
-        name: 'Ipad',
-        testMatch: "/sandbox.spec.ts",
-        retries: 1,
-        use: { ...devices['iPad (gen 7)'] },
-      },
-
-      {
-        name: 'API Tests',
-        testMatch: "/API Tests/**/*",
-        retries: 1,
-        use: {
-          baseURL: 'https://api.github.com',
-          extraHTTPHeaders: {
-            'Accept': 'application/vnd.github.v3+json',
-            'Authorization': `token ${process.env.API_TOKEN}`,
-          }
-        }
-      },
-
-
-
-
-
-
+    },
 
     /* Test against mobile viewports. */
     // {
