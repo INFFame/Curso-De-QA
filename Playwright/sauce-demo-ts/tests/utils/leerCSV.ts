@@ -21,7 +21,7 @@ export function readCSV(csvPath: string): User[] {
     // * Resultado: array de líneas no vacías y sin espacios sobrantes
     const lines = content.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
 
-    if (lines.length === 0) return []; // ! Si el archivo está vacío o solo tiene líneas vacías, devolver array vacío
+    if (lines.length === 0) return []; // ! Si el archivo está vacío o solo tiene líneas vacías, devolvera array vacío
 
     // * Tomar la primera línea (cabecera), dividir por comas y normalizar cada campo (trim + toLowerCase)
     const header = lines[0].split(',').map(h => h.trim().toLowerCase());
@@ -30,7 +30,7 @@ export function readCSV(csvPath: string): User[] {
     const userIdIndex = header.indexOf('username');
     const passIdIndex = header.indexOf('password');
 
-    // ! Si no se encuentran ambas cabeceras, lanzar un error claro
+    // ! Si no se encuentran ambas cabeceras, lanzar un error
     if (userIdIndex === -1 || passIdIndex === -1) {
         throw new Error('El CSV debe incluir las cabeceras "username" y "password".');
     }
@@ -43,7 +43,7 @@ export function readCSV(csvPath: string): User[] {
         // * Dividir cada línea en columnas por coma y trim a cada columna
         const cols = lines[i].split(',').map(col => col.trim());
 
-        // ! Si la fila no tiene la cantidad de columnas segun los índices la saltamos.
+        // ! Si la fila no tiene la cantidad de columnas segun los índices, se salta.
         // * Ejemplo: si userIdIndex=0 y passIdIndex=1, cols.length debe ser > 1
         if (cols.length <= Math.max(userIdIndex, passIdIndex)) continue;
 
@@ -57,5 +57,5 @@ export function readCSV(csvPath: string): User[] {
  
 }
 
-// Exportar la función por defecto para facilitar su importación a otros archivos.
+// * Exportar la función por defecto para facilitar su importación a otros archivos.
 export default readCSV;
