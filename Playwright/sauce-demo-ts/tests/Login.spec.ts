@@ -14,7 +14,7 @@ test.describe('Pruebas de inicio de sesion', () => {
     // * Iterar sobre cada usuario leido desde el CSV en formato array de objetos {username, password}
    for (const user of users) {
     test(`Login para el usuario: ${user.username}.`, async ({ page }) => {
-        await test.step('Ir a la página de sauce demo', async () => {
+        await test.step('Ir a la página Login de sauce demo', async () => {
             // Ir a la pagina de sauce demo
             await page.goto('');
             // Verificar que estamos en la pagina de sauce demo
