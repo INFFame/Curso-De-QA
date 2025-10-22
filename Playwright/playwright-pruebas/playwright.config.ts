@@ -34,7 +34,8 @@ export default defineConfig({
     // solo genera informacion cuando falla el test
     // trace: 'retain-on-failure',
     // genera informacion en el primer reintento
-    trace: 'on-first-retry',
+    trace: 'on',
+    video: 'retain-on-failure',
   },
 
   /* Configure projects for major browsers */
@@ -75,8 +76,9 @@ export default defineConfig({
       retries: 1,
       use: { ...devices['iPad (gen 7)'] },
     },
-  */
-    // Proyecto de APIs
+*/
+
+    // Proyecto de AutomationSandbox: detecta solo el spec AutomationSandbox.spec.ts
     {
       name: 'Computadora',
       use: { ...devices['Desktop Chrome'] },
@@ -114,6 +116,12 @@ export default defineConfig({
           Authorization: `token ${process.env.API_TOKEN}`,
         },
       },
+    },
+
+    {
+      name: 'MOCKAPI',
+      testMatch: 'APITests/**/MOCKAPI.spec.ts',
+      use: { ...devices['Desktop Chrome'] },
     },
 
     /* Test against mobile viewports. */

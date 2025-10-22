@@ -1,4 +1,5 @@
 import { test, Browser, Page, expect } from '@playwright/test';
+import { Sandbox } from './Pages/SandboxPage';
 
 (async () => {
     let browser: Browser;
@@ -93,16 +94,23 @@ import { test, Browser, Page, expect } from '@playwright/test';
             });
            
             await test.step('Puedo seleccionar el checkbox para Hamburguesa', async () => {
+                const sandbox = new Sandbox(page);
+                
                 // seleccionar checkbox
-                await page.getByRole('checkbox', { name: 'Hamburguesa 🍔' }).check(); 
-                await expect(page.getByRole('checkbox', { name: 'Hamburguesa 🍔' }), 'El checkbox no estaba seleccionado').toBeChecked(); // Validar que se seleccionó el checkbox           
+                // await page.getByRole('checkbox', { name: 'Hamburguesa 🍔' }).check(); 
+                await sandbox.checkBurger();
+                
+                await expect(sandbox.burgerCheckbox, 'El checkbox no estaba seleccionado').toBeChecked(); // Validar que se seleccionó el checkbox           
             
             });
 
             await test.step('Puedo deseleccionar el checkbox para Hamburguesa', async () => {
+                const sandbox = new Sandbox(page);
                 // deseleccionar checkbox
-                await page.getByRole('checkbox', { name: 'Hamburguesa 🍔' }).uncheck(); 
-                await expect(page.getByRole('checkbox', { name: 'Hamburguesa 🍔' }), 'El checkbox estaba seleccionado').not.toBeChecked(); // Validar que se deselecciono el checkbox
+                //await page.getByRole('checkbox', { name: 'Hamburguesa 🍔' }).uncheck(); 
+                await sandbox.uncheckBurger();
+
+                await expect(sandbox.burgerCheckbox, 'El checkbox estaba seleccionado').not.toBeChecked(); // Validar que se deselecciono el checkbox
             
             });
         });
