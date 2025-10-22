@@ -12,11 +12,6 @@ export class LoginPage {
         this.password = page.locator('[data-test="password"]'); // Inicializar el localizador del campo de contraseña
     }
 
-    
-    async gotoSauceDemo() {
-        await this.page.goto('');
-    }
-
     async login(username: string, password: string) {
         await this.username.fill(username);
         await this.password.fill(password);

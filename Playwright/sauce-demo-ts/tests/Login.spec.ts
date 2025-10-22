@@ -1,14 +1,18 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from './Pages/LoginPage';
+import * as path from 'path';
+import dotenv from 'dotenv';
+dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+const BaseURL = process.env.BASE_URL;
 
 
 test.describe('Pruebas iterando usernames desde la página', () => {
     test('Obtener usernames listados en la página y probar login con cada uno', async ({ page }) => {
         await test.step('Ingresar a la pagina de Sauce Demo', async () => {
-            const loginPage = new LoginPage(page);
             // Ir a la página de login
-            await loginPage.gotoSauceDemo();
-            await expect(page).toHaveURL('https://www.saucedemo.com/');
+            await page.goto(`${BaseURL}`);
+            await expect(page).toHaveURL(`${BaseURL}`);
         });
         
 
@@ -49,15 +53,15 @@ test.describe('Pruebas iterando usernames desde la página', () => {
                             // Usuario bloqueado debe mostrar error
                             await expect(page.locator('[data-test="error"]')).toBeVisible();
                             // Volver a la página de login para la siguiente iteración
-                            await loginPage.gotoSauceDemo();
-                            await expect(page).toHaveURL('https://www.saucedemo.com/');
+                            await page.goto(`${BaseURL}`);
+                            await expect(page).toHaveURL(`${BaseURL}`);
 
                         } else {
                             // Para los demás usuarios, debemos llegar al inventario
-                            await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+                            await expect(page).toHaveURL(`${BaseURL}/inventory.html`);
                             // Volver a la página de login para la siguiente iteración
-                            await loginPage.gotoSauceDemo();
-                            await expect(page).toHaveURL('https://www.saucedemo.com/');
+                            await page.goto(`${BaseURL}`);
+                            await expect(page).toHaveURL(`${BaseURL}`);
 
                         }
                     })
