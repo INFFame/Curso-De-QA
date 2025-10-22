@@ -1,10 +1,13 @@
 import { test, expect } from '@playwright/test';
+import { LoginPage } from './Pages/LoginPage';
+
 
 test.describe('Pruebas iterando usernames desde la página', () => {
     test('Obtener usernames listados en la página y probar login con cada uno', async ({ page }) => {
         await test.step('Ingresar a la pagina de Sauce Demo', async () => {
+            const loginPage = new LoginPage(page);
             // Ir a la página de login
-            await page.goto('');
+            await loginPage.gotoSauceDemo();
             await expect(page).toHaveURL('https://www.saucedemo.com/');
         });
         
@@ -26,20 +29,18 @@ test.describe('Pruebas iterando usernames desde la página', () => {
             // Iterar sobre cada username encontrado en la página
             for (const username of usernames) {
                 await test.step(`Probar login con el username: ${username}`, async () => {
-                    await test.step('Ingresar usuario', async () => {
-                        // Ingresar usuario y verificar
-                        await page.locator('[data-test="username"]').fill(username);
-                        await expect(page.locator('[data-test="username"]')).toHaveValue(username);
-                    });
-                    
-                    await test.step('Ingresar contraseña', async () => {
-                        // Ingresar la contraseña y verificar
+                    await test.step('Ingresar usuario y contraseña', async () => {
+                        const loginPage = new LoginPage(page);
                         const demoPassword = 'secret_sauce';
-                        await page.locator('[data-test="password"]').fill(demoPassword);
-                        await expect(page.locator('[data-test="password"]')).toHaveValue(demoPassword); 
+                        // Ingresar usuario y verificar
+                        await loginPage.login(username, demoPassword);
+                        await expect(loginPage.username).toHaveValue(username);
+                        await expect(loginPage.password).toHaveValue(demoPassword);
                     });
                     
                     await test.step('Hacer click en botón Login', async () => {
+                        const loginPage = new LoginPage(page);
+                        await test.info().attach('screenshot', { body: await page.screenshot(), contentType: 'image/png' });
                         // Hacer click en login y verificar resultado según usuario
                         await page.locator('[data-test="login-button"]').click();
 
@@ -48,14 +49,14 @@ test.describe('Pruebas iterando usernames desde la página', () => {
                             // Usuario bloqueado debe mostrar error
                             await expect(page.locator('[data-test="error"]')).toBeVisible();
                             // Volver a la página de login para la siguiente iteración
-                            await page.goto('');
+                            await loginPage.gotoSauceDemo();
                             await expect(page).toHaveURL('https://www.saucedemo.com/');
 
                         } else {
                             // Para los demás usuarios, debemos llegar al inventario
                             await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
                             // Volver a la página de login para la siguiente iteración
-                            await page.goto('');
+                            await loginPage.gotoSauceDemo();
                             await expect(page).toHaveURL('https://www.saucedemo.com/');
 
                         }
