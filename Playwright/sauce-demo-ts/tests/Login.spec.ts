@@ -46,7 +46,7 @@ test.describe('Pruebas iterando usernames desde la página', () => {
                         const loginPage = new LoginPage(page);
                         await test.info().attach('screenshot', { body: await page.screenshot(), contentType: 'image/png' });
                         // Hacer click en login y verificar resultado según usuario
-                        await page.locator('[data-test="login-button"]').click();
+                        await loginPage.clickLogin();
 
                         // Verificar resultado del login
                         if (username === 'locked_out_user') {
@@ -55,7 +55,6 @@ test.describe('Pruebas iterando usernames desde la página', () => {
                             // Volver a la página de login para la siguiente iteración
                             await page.goto(`${BaseURL}`);
                             await expect(page).toHaveURL(`${BaseURL}`);
-
                         } else {
                             // Para los demás usuarios, debemos llegar al inventario
                             await expect(page).toHaveURL(`${BaseURL}/inventory.html`);

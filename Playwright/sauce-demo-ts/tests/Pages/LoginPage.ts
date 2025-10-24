@@ -5,11 +5,13 @@ export class LoginPage {
     readonly page: Page; // Referencia a la página
     readonly username: Locator; // Localizador nombre de usuario
     readonly password: Locator; // Localizador contraseña
+    readonly loginButton: Locator; // Localizador botón de login
 
     constructor(page: Page) {
         this.page = page; // Inicializar la referencia a la página
         this.username = page.locator('[data-test="username"]'); // Inicializar el localizador nombre de usuario
         this.password = page.locator('[data-test="password"]'); // Inicializar el localizador contraseña
+        this.loginButton = page.locator('[data-test="login-button"]'); // Inicializar el localizador botón de login
     }
 
     async login(username: string, password: string) {
@@ -17,4 +19,7 @@ export class LoginPage {
         await this.password.fill(password); // Ingresar la contraseña con metodo fill
     }
 
+    async clickLogin() {
+        await this.loginButton.click(); // Hacer click en el botón de login
+    }
 }
