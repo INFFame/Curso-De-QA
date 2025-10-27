@@ -29,7 +29,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
         test.info().annotations.push({ type: 'bug', description: 'Esto va a informar que el caso de prueba tiene un bug' });
 
         await test.step('Dado que navego al sandbox de automation de free range testers ', async () => {
-            await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+            await page.goto('');
         });
 
         await test.step('Puedo hacer click en el boton con id dinamico', async () => {
@@ -55,7 +55,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
     test('Lleno un campo de text en Automation Sanbdox', async ({ page }) => {
         await test.step('Dado que navego al sandbox de automation de free range testers', async () => {
-            await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+            await page.goto('');
         }); 
 
         await test.step('Puedo llenar un campo de texto', async () => {
@@ -87,7 +87,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
     test('Puedo seleccionar y deseleccionar checkboxes en el sandbox', async ({ page }) => {
         await test.step('Dado que navego al sandbox de automation de free range testers', async () => {
-            await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+            await page.goto('');
         });
         
         await test.step('Puedo seleccionar el checkbox para Hamburguesa', async () => {
@@ -115,7 +115,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
     test('Puedo seleccionar Radio Buttons', async ({ page }) => {
         await test.step('Dado que navego al sandbox de automation de free range testers', async () => {
-            await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+            await page.goto('');
         });
 
         await test.step('Puedo seleccionar el Radio Button para Opción 2', async () => {
@@ -130,7 +130,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
     test('Puedo seleccionar un deporte favorito', async ({ page }) => {
         await test.step('Dado que navego al sandbox de automation de free range testers', async () => {
-            await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+            await page.goto('');
         });
 
         await test.step('Puedo seleccionar un deporte del dropdown', async () => {
@@ -154,7 +154,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
     test('Puedo seleccionar un Día del dropdown Días de la semana', async ({ page }) => {
         await test.step('Dado que navego al sandbox de automation de free range testers', async () => {
-            await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+            await page.goto('');
         });
 
         await test.step('Puedo seleccionar un día del dropdown Días de la semana', async () => {
@@ -170,7 +170,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
     test.fixme('Puedo subir archivos a Automation Sandbox', async ({ page }) => {
         
         await test.step('Dado que navego al sandbox de automation de free range testers', async () => {
-            await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+            await page.goto('');
         });
 
         await test.step('Puedo subir un archivo', async () => {
@@ -188,7 +188,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
         test.fixme(); // Marcar el test como pendiente de arreglar
 
         await test.step('Dado que navego al sandbox de automation de free range testers', async () => {
-            await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+            await page.goto('');
         });
 
         await test.step('Puedo hacer un Drag and Drop de elementos', async () => {
@@ -199,7 +199,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
     test('Valido que todos los valores cambian en la tabla dinámica luego de un reload', async ({ page }) => {
         await test.step('Dado que navego al sandbox de automation de free range testers', async () => {
-            await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+            await page.goto('');
         });
 
         await test.step('Puedo validar que los valores cambiaron al hacer un reload a la web', async () => {
@@ -225,7 +225,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
         await test.info().attach('screenshot', { body: await page.screenshot(), contentType: 'image/png' });
 
         await test.step('Dado que navego al sandbox de automation de free range testers', async () => {
-            await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+            await page.goto('');
         });
 
         await test.step('Puedo validar los elementos para la columna Nombre de la tabla estática', async () => {
@@ -242,7 +242,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
     test('Ejemplo de Soft Assertions', async ({ page }) => {
         await test.step('Dado que navego al sandbox de automation de free range testers', async () => {
-            await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+            await page.goto('');
         });
 
         await test.step('Valido que todos los elementos de los checkboxes son los correctos', async () => {
@@ -257,7 +257,7 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
     test('Validando dentro de un popup', async ({ page }) => {
         await test.step('Dado que navego al sandbox de automation de free range testers', async () => {
-            await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
+            await page.goto('');
             
         });
 
