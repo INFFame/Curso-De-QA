@@ -222,7 +222,6 @@ test.describe('Acciones en el Automation Sandbox', () => {
 
 
     test('Valido la columna Nombres de la tabla estática', async ({ page }) => {
-        await test.info().attach('screenshot', { body: await page.screenshot(), contentType: 'image/png' });
 
         await test.step('Dado que navego al sandbox de automation de free range testers', async () => {
             await page.goto('');
@@ -232,10 +231,13 @@ test.describe('Acciones en el Automation Sandbox', () => {
             const valoresColumnaNombres = await page.$$eval('h2:has-text("Tabla estática") + table tbody tr td:nth-child(2)', elements => elements.map(element => element.textContent));
             const nombresEsperados = ['Messi', 'Ronaldo', 'Mbappe'];
 
+            await test.info().attach('screenshot', { body: await page.screenshot(), contentType: 'image/png'});
+
             const tableLocator = page.locator('h2:has-text("Tabla Estática") + table');
             const screenshot = await tableLocator.screenshot();
             await test.info().attach('screenshot', { body: screenshot, contentType: 'image/png' });
-            await page.screenshot({ path: 'evidencias/ejemplo.png', fullPage: true });
+            await page.screenshot({ path: 'evidencias/solotabla.png', fullPage: false });
+
         
             expect(valoresColumnaNombres).toEqual(nombresEsperados);
         });
