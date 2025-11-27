@@ -1,6 +1,7 @@
 # Importar las librerías necesarias
 import pytest
-from playwright.sync_api import Page # Importar Page para tipado
+from typing import Generator
+from playwright.sync_api import Page, APIRequestContext, Playwright # Importar Page para tipado
 
 # Fixture para proporcionar una página de Playwright a los tests
 @pytest.fixture(scope="function")
@@ -17,3 +18,21 @@ def login_successful(page: Page):
     
     # Retornar la página ya autenticada
     return page
+
+# Esta fixture se ejecuta una sola vez por sesión de pruebas
+@pytest.fixture(scope="session")
+def api_context(playwright: Playwright) -> Generator[APIRequestContext, None, None]:
+    
+    # Crear un contexto de API usando el fixture de pytest-playwright
+    api_context = playwright.request.new_context(
+        base_url="https://jsonplaceholder.typicode.com",
+        extra_http_headers={
+            # Encabezados HTTP adicionales si es necesario
+            "Accept": "application/json",
+        },
+    )
+    
+    # Proveer el contexto de API a los tests
+    yield api_context
+    # Cerrar el contexto de API y Playwright al finalizar la sesión de pruebas
+    api_context.dispose()
